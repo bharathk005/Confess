@@ -90,9 +90,29 @@ public class Creater
         }
     }
 
-    public void batcher()
+    public void batcher() throws IOException 
     {
-    
-    }
+        String batch = "g++ HelloWorld.cpp -o HelloWorld.exe\nHelloWorld.exe";
+        File f = new File(path);
+        try {
+                FileWriter write = new FileWriter(path+"\\batchme.bat");
+                BufferedWriter bw = new BufferedWriter(write);
+                bw.write(batch);
+                bw.close();
+            } catch (IOException ex) {
+            Logger.getLogger(Creater.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        File fil = new File(path+"\\batchme.bat");
+        if(! fil.exists())
+            {
+                throw new IllegalArgumentException("file " + fil + " does not exist");
+            }
+        else 
+             {
+                //Process p = Runtime.getRuntime().exec(fil.getAbsolutePath());
+               Process p =  Runtime.getRuntime().exec("cmd /c start batchme.bat", null, new File(path));
+             //   Process p =  Runtime.getRuntime().exec("cmd /c start "+path+"\\batchme.bat");
+             }
+       }
 
 }

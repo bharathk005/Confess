@@ -86,6 +86,20 @@ public class Uploader
         
     }
     
+    public void localScanner1() throws FileNotFoundException, IOException
+    {
+        int done=0;
+        File f = new File(path+"\\logs.txt");
+        Scanner s = new Scanner(f);
+        while(s.hasNextLine())
+        {
+            uploadString += "\n"+newLine;
+        }
+        done = logUpload();
+        if(done == 1)
+            System.out.println("done uploading");
+    }
+    
     public void localScanner() throws IOException
     {
         getLineNumber();
